@@ -13,12 +13,14 @@ import { theme } from "./src/infrastructure/theme";
 import { ListsScreen } from "./src/features/lists/screens/lists.screen";
 import { SafeArea } from "./src/components/utility/safe-area.component";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { ListsContextProvider } from "./src/services/lists/lists.context";
 
 const Tab = createBottomTabNavigator();
 
 const TAB_ICONS = (focused) => ({
-  Lists: focused ? "document-text" : "document-text-outline",
-  Groups: focused ? "people" : "people-outline",
+  Lists: focused ? "checkbox" : "checkbox-outline",
+  Notes: focused ? "document-text" : "document-text-outline",
+  Friends: focused ? "people" : "people-outline",
   Settings: focused ? "settings" : "settings-outline",
 });
 
@@ -33,6 +35,10 @@ const screenOptions = ({ route }) => {
         color={color}
       />
     ),
+    // tabBarStyle: {
+    //   borderTopWidth: 0,
+    //   elevation: 0,
+    // },
   };
 };
 
@@ -42,9 +48,15 @@ const Settings = () => (
   </SafeArea>
 );
 
-const Groups = () => (
+const Friends = () => (
   <SafeArea>
-    <Text>Groups</Text>
+    <Text>Friends</Text>
+  </SafeArea>
+);
+
+const Notes = () => (
+  <SafeArea>
+    <Text>Notes</Text>
   </SafeArea>
 );
 
@@ -60,20 +72,23 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <NavigationContainer>
-          <Tab.Navigator
-            screenOptions={screenOptions}
-            tabBarOptions={{
-              activeTintColor: "#000000",
-              inactiveTintColor: "gray",
-              showLabel: false,
-            }}
-          >
-            <Tab.Screen name="Lists" component={ListsScreen} />
-            <Tab.Screen name="Groups" component={Groups} />
-            <Tab.Screen name="Settings" component={Settings} />
-          </Tab.Navigator>
-        </NavigationContainer>
+        <ListsContextProvider>
+          <NavigationContainer>
+            <Tab.Navigator
+              screenOptions={screenOptions}
+              tabBarOptions={{
+                activeTintColor: "#000000",
+                inactiveTintColor: "gray",
+                showLabel: false,
+              }}
+            >
+              <Tab.Screen name="Lists" component={ListsScreen} />
+              <Tab.Screen name="Notes" component={Notes} />
+              <Tab.Screen name="Friends" component={Friends} />
+              <Tab.Screen name="Settings" component={Settings} />
+            </Tab.Navigator>
+          </NavigationContainer>
+        </ListsContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>

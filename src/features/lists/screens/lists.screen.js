@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/native";
 import { Searchbar } from "react-native-paper";
 
@@ -6,6 +6,7 @@ import { SafeArea } from "../../../components/utility/safe-area.component";
 import { ListItemRow } from "../components/list-item-row.component";
 import { Spacer } from "../../../components/spacer.component";
 
+import { ListsContext } from "../../../services/lists/lists.context";
 const SearchContainer = styled.View`
   padding: ${(props) => props.theme.space[3]};
   padding-top: ${(props) => props.theme.space[1]};
@@ -16,29 +17,27 @@ const MainList = styled.FlatList.attrs({
   contentContainerStyle: {},
 })``;
 
-export const ListsScreen = () => (
-  <SafeArea>
-    <SearchContainer>
-      <Searchbar style={{ elevation: 5 }} />
-    </SearchContainer>
-    <MainList
-      style={{ backgroundColor: "#FFFFFF" }}
-      data={[
-        { name: 1, categoryColor: "#54D6FF" },
-        { name: 2, categoryColor: "#54D6FF" },
-        { name: 3, categoryColor: "#54D6FF" },
-        // { name: 4, categoryColor: "#54D6FF" },
-        // { name: 5, categoryColor: "#54D6FF" },
-        // { name: 6, categoryColor: "#54D6FF" },
-        // { name: 7, categoryColor: "#54D6FF" },
-        // { name: 8, categoryColor: "#54D6FF" },
-        // { name: 9, categoryColor: "#54D6FF" },
-        // { name: 10, categoryColor: "#54D6FF" },
-        // { name: 11, categoryColor: "#54D6FF" },
-        // { name: 12, categoryColor: "#54D6FF" },
-      ]}
-      renderItem={() => <ListItemRow />}
-      keyExtractor={(item) => item.name}
-    />
-  </SafeArea>
-);
+export const ListsScreen = () => {
+  const { isLoading, error, lists } = useContext(ListsContext);
+  console.log(error);
+
+  return (
+    <SafeArea>
+      <SearchContainer>
+        <Searchbar style={{ elevation: 5 }} />
+      </SearchContainer>
+      <MainList
+        style={{ backgroundColor: "#FFFFFF" }}
+        data={lists}
+        renderItem={({ item }) => {
+          return (
+            <Spacer position="bottom" size="large">
+              <ListItemRow listItem={item} />
+            </Spacer>
+          );
+        }}
+        keyExtractor={(item) => item.name}
+      />
+    </SafeArea>
+  );
+};

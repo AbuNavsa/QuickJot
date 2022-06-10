@@ -1,0 +1,8 @@
+{
+  "results": [
+    {"id":1,"name":"Shopping","isLocked":0,"status": "Active","sortOrder":1,"categoryColor":"lightBlue","isDeleted":0, "isShared": 0, "LastUpdated":""},
+    {"id":2,"name":"Clothes","isLocked":1,"status": "Active","sortOrder":2,"categoryColor":"green","isDeleted":0, "isShared": 0, "LastUpdated":""},
+    {"id":3,"name":"Groceries","isLocked":1,"status": "Completed","sortOrder":3,"categoryColor":"orange","isDeleted":0, "isShared": 0, "LastUpdated":""},
+    {"id":4,"name":"Car Accessories","isLocked":0,"status": "Active","sortOrder":4,"categoryColor":"pink","isDeleted":0, "isShared": 0, "LastUpdated":""}
+  ]
+}
