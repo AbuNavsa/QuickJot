@@ -25,7 +25,7 @@ export const ListItemRow = ({ listItem = {} }) => {
   } = listItem;
 
   return (
-    <ListItem elevation={0}>
+    <ListItem>
       <Info status={status}>
         <Icon color={(props) => props.theme.colors.cats[categoryColor]}>
           <IconInitial>{name.charAt(0).toUpperCase()}</IconInitial>

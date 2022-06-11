@@ -1,13 +1,8 @@
 import styled from "styled-components";
-import { Card } from "react-native-paper";
-import Ionicons from "react-native-vector-icons/Ionicons";
 
-export const ListItem = styled(Card)`
+export const ListItem = styled.View`
   background-color: ${(props) => props.theme.colors.bg.primary};
   shadow-color: ${(props) => props.theme.colors.bg.primary};
-  border-radius: 0;
-  // border-bottom-width: 1px;
-  // border-bottom-color: #e3e3e3;
 `;
 
 export const Name = styled.Text`
