@@ -11,6 +11,7 @@ export const ListsContextProvider = ({ children }) => {
 
   const retrieveLists = () => {
     setIsLoading(true);
+
     setTimeout(() => {
       listsRequest()
         .then(listsTransform)
@@ -22,7 +23,7 @@ export const ListsContextProvider = ({ children }) => {
           setIsLoading(false);
           setError(err);
         });
-    }, 2000);
+    }, 1000);
   };
 
   useEffect(() => {
