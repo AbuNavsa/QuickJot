@@ -1,9 +1,22 @@
 import { mocks } from "./mock";
 import camelize from "camelize";
 
-export const listsRequest = (list = "lists") => {
+export const listsRequest = (list = "lists", searchTerm = null) => {
   return new Promise((resolve, reject) => {
-    const mock = mocks[list];
+    let mock = mocks[list];
+    // console.log(">> STRUCTURE", mock);
+    // console.log(">> STRUCTURE1", Object(mock)["results"]);
+    // console.log(">> STRUCTURE2", mock[0]["results"]);
+    console.log(">> Comparing data", mock);
+
+    if (searchTerm) {
+      Object(mock)["results"] = mocks[list]["results"].filter((listItem) => {
+        if (listItem.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+          return listItem;
+        }
+      });
+    }
+    console.log(">> Comparing data 2", mock);
 
     if (!mock) {
       reject("not found");

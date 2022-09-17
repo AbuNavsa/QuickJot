@@ -13,7 +13,7 @@ export const ListsContextProvider = ({ children }) => {
     setIsLoading(true);
 
     setTimeout(() => {
-      listsRequest()
+      listsRequest(undefined, "S")
         .then(listsTransform)
         .then((results) => {
           setIsLoading(false);
