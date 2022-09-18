@@ -5,15 +5,21 @@ import { listsRequest, listsTransform } from "./lists.service";
 export const ListsContext = createContext();
 
 export const ListsContextProvider = ({ children }) => {
+  const [keyword, setKeyword] = useState("");
   const [lists, setLists] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const retrieveLists = () => {
+  const onSearch = (searchKeyword = keyword) => {
     setIsLoading(true);
+    setKeyword(searchKeyword);
+    if (!searchKeyword.length) {
+      // Don't do anything
+    }
 
+    setIsLoading(true);
     setTimeout(() => {
-      listsRequest()
+      listsRequest(undefined, searchKeyword)
         .then(listsTransform)
         .then((results) => {
           setIsLoading(false);
@@ -23,11 +29,11 @@ export const ListsContextProvider = ({ children }) => {
           setIsLoading(false);
           setError(err);
         });
-    }, 1000);
+    }, 0);
   };
 
   useEffect(() => {
-    retrieveLists();
+    onSearch();
   }, []);
 
   return (
@@ -36,6 +42,8 @@ export const ListsContextProvider = ({ children }) => {
         lists,
         isLoading,
         error,
+        search: onSearch,
+        keyword,
       }}
     >
       {children}

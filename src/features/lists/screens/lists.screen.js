@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import styled from "styled-components/native";
 import { Searchbar } from "react-native-paper";
+import { ActivityIndicator } from "react-native";
 
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { ListItemRow } from "../components/list-item-row.component";
 import { Spacer } from "../../../components/spacer.component";
 
 import { ListsContext } from "../../../services/lists/lists.context";
+import { Search } from "../components/search.component";
 const SearchContainer = styled.View`
   padding: ${(props) => props.theme.space[3]};
   padding-top: ${(props) => props.theme.space[1]};
@@ -17,15 +19,22 @@ const MainList = styled.FlatList.attrs({
   contentContainerStyle: {},
 })``;
 
+const Loading = styled(ActivityIndicator)`
+  margin-left: -25px;
+`;
+
+const LoadingContainer = styled.View`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+`;
+
 export const ListsScreen = () => {
   const { isLoading, error, lists } = useContext(ListsContext);
-  console.log(error);
 
   return (
     <SafeArea>
-      <SearchContainer>
-        <Searchbar style={{ elevation: 5 }} />
-      </SearchContainer>
+      <Search />
       <MainList
         style={{ backgroundColor: "#FFFFFF" }}
         data={lists}
@@ -38,6 +47,15 @@ export const ListsScreen = () => {
         }}
         keyExtractor={(item) => item.name}
       />
+      {isLoading && (
+        <LoadingContainer>
+          <Loading
+            size={50}
+            animating={true}
+            color={(props) => props.theme.colors.brand.primary}
+          />
+        </LoadingContainer>
+      )}
     </SafeArea>
   );
 };
