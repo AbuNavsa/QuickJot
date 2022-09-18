@@ -8,6 +8,7 @@ import { ListItemRow } from "../components/list-item-row.component";
 import { Spacer } from "../../../components/spacer.component";
 
 import { ListsContext } from "../../../services/lists/lists.context";
+import { Search } from "../components/search.component";
 const SearchContainer = styled.View`
   padding: ${(props) => props.theme.space[3]};
   padding-top: ${(props) => props.theme.space[1]};
@@ -33,10 +34,7 @@ export const ListsScreen = () => {
 
   return (
     <SafeArea>
-      <SearchContainer>
-        <Searchbar style={{ elevation: 5 }} />
-      </SearchContainer>
-
+      <Search />
       <MainList
         style={{ backgroundColor: "#FFFFFF" }}
         data={lists}

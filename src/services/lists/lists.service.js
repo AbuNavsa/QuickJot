@@ -3,25 +3,23 @@ import camelize from "camelize";
 
 export const listsRequest = (list = "lists", searchTerm = null) => {
   return new Promise((resolve, reject) => {
-    let mock = mocks[list];
-    // console.log(">> STRUCTURE", mock);
-    // console.log(">> STRUCTURE1", Object(mock)["results"]);
-    // console.log(">> STRUCTURE2", mock[0]["results"]);
-    console.log(">> Comparing data", mock);
+    const mock = mocks[list];
+    let returningData = { "results": [] }; // Created so we dont change the original mock variable
 
     if (searchTerm) {
-      Object(mock)["results"] = mocks[list]["results"].filter((listItem) => {
+      returningData.results = mocks[list]["results"].filter((listItem) => {
         if (listItem.name.toLowerCase().includes(searchTerm.toLowerCase())) {
           return listItem;
         }
       });
+    } else {
+      returningData = mock;
     }
-    console.log(">> Comparing data 2", mock);
 
-    if (!mock) {
+    if (!returningData.results) {
       reject("not found");
     }
-    resolve(mock);
+    resolve(returningData);
   });
 };
 
