@@ -4,7 +4,7 @@ import camelize from "camelize";
 export const listsRequest = (list = "lists", searchTerm = null) => {
   return new Promise((resolve, reject) => {
     const mock = mocks[list];
-    let returningData = { "results": [] }; // Created so we dont change the original mock variable
+    let returningData = { "results": [] }; // Created so we don't change the original mock variable
 
     if (searchTerm) {
       returningData.results = mocks[list]["results"].filter((listItem) => {

@@ -7,6 +7,7 @@ import {
   IconInitial,
   Section,
   SectionEnd,
+  SharingIcon,
 } from "./list-item-row.styles";
 
 import { Spacer } from "../../../components/spacer.component";
@@ -29,6 +30,9 @@ export const ListItemRow = ({ listItem = {} }) => {
       <Info status={status}>
         <Icon color={(props) => props.theme.colors.cats[categoryColor]}>
           <IconInitial>{name.charAt(0).toUpperCase()}</IconInitial>
+          {isShared && (
+            <SharingIcon name={"people-circle"} size={20} color={"grey"} />
+          )}
         </Icon>
         <Spacer position="left" size="large" />
         <Name status={status}>{name}</Name>
