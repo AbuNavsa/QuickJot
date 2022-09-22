@@ -31,7 +31,6 @@ const LoadingContainer = styled.View`
 
 export const ListsScreen = () => {
   const { isLoading, error, lists } = useContext(ListsContext);
-
   return (
     <SafeArea>
       <Search />

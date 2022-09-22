@@ -36,7 +36,7 @@ export const Icon = styled.View`
 
 export const IconInitial = styled.Text`
   font-family: ${(props) => props.theme.fonts.heading};
-  font-size: 18;
+  font-size: 18px;
   color: ${(props) => props.theme.colors.cats.text};
 `;
 
