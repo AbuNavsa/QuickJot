@@ -12,7 +12,8 @@ export const colors = {
     disabled: "#DEDEDE",
     error: "#D0421B",
     success: "#138000",
-    inputBorder: "#DDDDDD",
+    inputBorder: "#AAAAAA",
+    smallPrint: "#7D7D7D",
   },
   bg: {
     primary: "#FFFFFF",

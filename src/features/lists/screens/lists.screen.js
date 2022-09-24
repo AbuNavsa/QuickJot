@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components/native";
-import { Searchbar } from "react-native-paper";
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, TouchableOpacity } from "react-native";
 
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { ListItemRow } from "../components/list-item-row.component";
@@ -9,11 +8,6 @@ import { Spacer } from "../../../components/spacer.component";
 
 import { ListsContext } from "../../../services/lists/lists.context";
 import { Search } from "../components/search.component";
-const SearchContainer = styled.View`
-  padding: ${(props) => props.theme.space[3]};
-  padding-top: ${(props) => props.theme.space[1]};
-  background-color: ${(props) => props.theme.colors.ui.quaternary};
-`;
 
 const MainList = styled.FlatList.attrs({
   contentContainerStyle: {},
@@ -29,9 +23,8 @@ const LoadingContainer = styled.View`
   left: 50%;
 `;
 
-export const ListsScreen = () => {
+export const ListsScreen = ({ navigation }) => {
   const { isLoading, error, lists } = useContext(ListsContext);
-
   return (
     <SafeArea>
       <Search />
@@ -40,9 +33,15 @@ export const ListsScreen = () => {
         data={lists}
         renderItem={({ item }) => {
           return (
-            <Spacer position="bottom" size="large">
-              <ListItemRow listItem={item} />
-            </Spacer>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("List-Checklist", { list: item });
+              }}
+            >
+              <Spacer position="bottom" size="large">
+                <ListItemRow listItem={item} />
+              </Spacer>
+            </TouchableOpacity>
           );
         }}
         keyExtractor={(item) => item.name}
