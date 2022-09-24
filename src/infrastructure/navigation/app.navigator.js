@@ -2,9 +2,9 @@ import React from "react";
 import { Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { ListsScreen } from "../../features/lists/screens/lists.screen";
-import { SafeArea } from "../../../src/components/utility/safe-area.component";
+import { SafeArea } from "../../components/utility/safe-area.component";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { ListsNavigator } from "./list.navigator";
 
 export const AppNavigator = () => {
   const Tab = createBottomTabNavigator();
@@ -20,6 +20,7 @@ export const AppNavigator = () => {
     const iconName = TAB_ICONS[route.name];
 
     return {
+      headerShown: false,
       tabBarIcon: ({ focused, size, color }) => (
         <Ionicons
           name={TAB_ICONS(focused)[route.name]}
@@ -60,7 +61,7 @@ export const AppNavigator = () => {
           showLabel: false,
         }}
       >
-        <Tab.Screen name="Lists" component={ListsScreen} />
+        <Tab.Screen name="Lists" component={ListsNavigator} />
         <Tab.Screen name="Notes" component={Notes} />
         <Tab.Screen name="Friends" component={Friends} />
         <Tab.Screen name="Settings" component={Settings} />
