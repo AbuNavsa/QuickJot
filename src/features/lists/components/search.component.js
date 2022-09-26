@@ -8,6 +8,10 @@ const SearchContainer = styled.View`
   background-color: ${(props) => props.theme.colors.bg.primary};
 `;
 
+const SearchBar = styled(Searchbar)`
+  border-radius: 50px;
+`;
+
 export const Search = () => {
   const { keyword, search } = useContext(ListsContext);
   const [searchKeyword, setSearchKeyword] = useState(keyword);
@@ -18,9 +22,10 @@ export const Search = () => {
 
   return (
     <SearchContainer>
-      <Searchbar
+      <SearchBar
         placeholder="Search lists"
         value={searchKeyword}
+        inputStyle={{ fontSize: 16 }} // Change to props
         onIconPress={() => {
           search(searchKeyword);
         }}
