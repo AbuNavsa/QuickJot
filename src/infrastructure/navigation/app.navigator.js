@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { SafeArea } from "../../components/utility/safe-area.component";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { ListsNavigator } from "./list.navigator";
+import { FavouritesScreen } from "../../features/favourites/screens/favourites.screen";
 
 export const AppNavigator = () => {
   const Tab = createBottomTabNavigator();
@@ -14,13 +15,21 @@ export const AppNavigator = () => {
     Notes: focused ? "document-text" : "document-text-outline",
     Friends: focused ? "people" : "people-outline",
     Settings: focused ? "settings" : "settings-outline",
+    Favourites: focused ? "heart" : "heart-outline",
   });
 
   const screenOptions = ({ route }) => {
     const iconName = TAB_ICONS[route.name];
 
     return {
-      headerShown: false,
+      headerTitleAlign: "center",
+      headerTitleStyle: {
+        fontFamily: "Roboto",
+        color: "black",
+        fontSize: 18,
+      },
+      headerTintColor: "#54D6FF",
+      // headerShown: false,
       tabBarIcon: ({ focused, size, color }) => (
         <Ionicons
           name={TAB_ICONS(focused)[route.name]}
@@ -28,12 +37,13 @@ export const AppNavigator = () => {
           color={color}
         />
       ),
-      // tabBarStyle: {
-      //   borderTopWidth: 0,
-      //   elevation: 0,
-      // },
+      tabBarStyle: {
+        borderTopWidth: 0,
+        elevation: 0,
+      },
     };
   };
+
   const Settings = () => (
     <SafeArea>
       <Text>Settings</Text>
@@ -61,10 +71,19 @@ export const AppNavigator = () => {
           showLabel: false,
         }}
       >
-        <Tab.Screen name="Lists" component={ListsNavigator} />
+        <Tab.Screen
+          name="Lists"
+          component={ListsNavigator}
+          options={{ headerShown: false }}
+        />
         <Tab.Screen name="Notes" component={Notes} />
         <Tab.Screen name="Friends" component={Friends} />
         <Tab.Screen name="Settings" component={Settings} />
+        <Tab.Screen
+          name="Favourites"
+          component={FavouritesScreen}
+          options={{ headerShown: true }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
