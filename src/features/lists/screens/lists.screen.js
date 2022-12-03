@@ -15,6 +15,10 @@ import {
   HeaderButton,
 } from "../../../infrastructure/navigation/list.navigator";
 
+import Collapsible from "react-native-collapsible";
+import Animated, { ZoomInEasyUp, ZoomOutUp } from "react-native-reanimated";
+import { FAB } from "react-native-paper";
+
 const MainList = styled.FlatList.attrs({
   contentContainerStyle: {},
 })``;
@@ -23,15 +27,29 @@ const Loading = styled(ActivityIndicator)`
   margin-left: -25px;
 `;
 
+const SearchContainer = styled(Collapsible)`
+  padding: ${(props) => props.theme.space[3]};
+  background-color: white;
+`;
+
 const LoadingContainer = styled.View`
   position: absolute;
   top: 50%;
   left: 50%;
 `;
 
+const AddButton = styled(FAB)`
+  position: absolute;
+  z-index: 99;
+  border: none;
+  bottom: ${(props) => props.theme.space[3]};
+  right: ${(props) => props.theme.space[3]};
+  background-color: ${(props) => props.theme.colors.brand.primary};
+`;
+
 export const ListsScreen = ({ navigation }) => {
   const { isLoading, error, lists } = useContext(ListsContext);
-  const [displaySearchbar, setDisplaySearchbar] = useState(false);
+  const [displaySearchbar, setDisplaySearchbar] = useState(true);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -55,7 +73,30 @@ export const ListsScreen = ({ navigation }) => {
 
   return (
     <SafeArea>
-      {displaySearchbar && <Search />}
+      {/* Floating Button */}
+
+      <AddButton
+        icon="plus"
+        // animated={true}
+        color="white"
+        onPress={() => console.log("Pressed")}
+      />
+
+      {/* Search Function */}
+
+      <SearchContainer collapsed={displaySearchbar}>
+        {!displaySearchbar && (
+          <Animated.View
+            entering={ZoomInEasyUp.duration(300)}
+            exiting={ZoomOutUp.duration(300)}
+          >
+            <Search />
+          </Animated.View>
+        )}
+      </SearchContainer>
+
+      {/* Main List */}
+
       <MainList
         style={{ backgroundColor: "#FFFFFF" }}
         data={lists}
@@ -66,9 +107,7 @@ export const ListsScreen = ({ navigation }) => {
                 navigation.navigate("List-Checklist", { list: item });
               }}
             >
-              <Spacer position="bottom" size="large">
-                <ListItemRow listItem={item} />
-              </Spacer>
+              <ListItemRow listItem={item} />
             </TouchableOpacity>
           );
         }}
@@ -76,11 +115,7 @@ export const ListsScreen = ({ navigation }) => {
       />
       {isLoading && (
         <LoadingContainer>
-          <Loading
-            size={50}
-            animating={true}
-            color={(props) => props.theme.colors.brand.primary}
-          />
+          <Loading size={50} animating={true} />
         </LoadingContainer>
       )}
     </SafeArea>

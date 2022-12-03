@@ -17,8 +17,8 @@ export const Name = styled.Text`
 export const Info = styled.View`
   padding-left: ${(props) => props.theme.space[3]};
   padding-right: ${(props) => props.theme.space[3]};
-  padding-top: ${(props) => props.theme.space[2]};
-  padding-bottom: ${(props) => props.theme.space[2]};
+  padding-top: ${(props) => props.theme.space[3]};
+  padding-bottom: ${(props) => props.theme.space[3]};
   flex-direction: row;
   align-items: center;
   opacity: ${(props) => (props.status == "Completed" ? "0.5" : "1")};

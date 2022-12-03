@@ -38,7 +38,7 @@ export const ListsNavigator = () => {
       <ListStack.Screen
         name="Lists"
         component={ListsScreen}
-        options={{ title: "Checklist" }}
+        options={{ title: "Lists" }}
       />
       <ListStack.Screen
         name="List-Checklist"
