@@ -4,6 +4,23 @@ import { SafeArea } from "../../../components/utility/safe-area.component";
 import styled from "styled-components";
 import { FavouritesRow } from "../components/favourites-row.component";
 
+import { FAB } from "react-native-paper";
+
+const AddButton = styled(FAB)`
+  position: absolute;
+  z-index: 99;
+  border: none;
+  bottom: ${(props) => props.theme.space[3]};
+  right: ${(props) => props.theme.space[3]};
+  background-color: ${(props) => props.theme.colors.brand.primary};
+`;
+<AddButton
+  icon="plus"
+  // animated={true}
+  color="white"
+  onPress={() => console.log("Pressed")}
+/>;
+
 export const FavouritesScreen = () => {
   return (
     <SafeArea style={{ backgroundColor: "#FFFFFF" }}>

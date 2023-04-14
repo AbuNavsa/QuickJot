@@ -9,6 +9,7 @@ const SearchContainer = styled.View`
 
 const SearchBar = styled(Searchbar)`
   border-radius: 50px;
+  background-color: ${(props) => props.theme.colors.bg.primary};
 `;
 
 export const Search = () => {

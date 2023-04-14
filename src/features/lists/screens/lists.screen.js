@@ -87,8 +87,8 @@ export const ListsScreen = ({ navigation }) => {
       <SearchContainer collapsed={displaySearchbar}>
         {!displaySearchbar && (
           <Animated.View
-            entering={ZoomInEasyUp.duration(300)}
-            exiting={ZoomOutUp.duration(300)}
+            entering={ZoomInEasyUp.duration(200)}
+            exiting={ZoomOutUp.duration(200)}
           >
             <Search />
           </Animated.View>
