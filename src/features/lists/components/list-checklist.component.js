@@ -19,7 +19,11 @@ export const ChecklistItemRow = ({ name, color, isComplete }) => {
   const [checked, setChecked] = useState(isComplete);
 
   return (
-    <ChecklistItem>
+    <ChecklistItem
+      onPress={() => {
+        setChecked(!checked);
+      }}
+    >
       <ChecklistInfo>
         <ChecklistIconContainer>
           <ChecklistIcon color={(props) => props.theme.colors.cats[color]} />
@@ -40,7 +44,9 @@ export const ChecklistItemRow = ({ name, color, isComplete }) => {
               color="black"
               uncheckedColor="#AAAAAA"
               status={checked ? "checked" : "unchecked"}
-              onPress={() => {}}
+              // onPress={() => {
+              //   setChecked(!checked);
+              // }}
             />
           </SectionEnd>
         </Section>

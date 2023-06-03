@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ChecklistItem = styled.View`
+export const ChecklistItem = styled.TouchableOpacity`
   background-color: ${(props) => props.theme.colors.bg.primary};
   shadow-color: ${(props) => props.theme.colors.bg.primary};
 `;
