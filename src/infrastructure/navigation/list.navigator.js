@@ -4,7 +4,7 @@ import {
   TransitionPresets,
 } from "@react-navigation/stack";
 import { ListsScreen } from "../../features/lists/screens/lists.screen";
-import { Text, TouchableWithoutFeedback, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { useTheme } from "react-native-paper";
 import { ListChecklistScreen } from "../../features/lists/screens/list-checklist.screen";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -21,18 +21,29 @@ export const HeaderRight = styled.View`
 
 const ListStack = createStackNavigator();
 
-export const ListsNavigator = () => {
+export const ListsNavigator = ({ navigation }) => {
   return (
     <ListStack.Navigator
       screenOptions={{
         ...TransitionPresets.SlideFromRightIOS,
         headerTitleAlign: "center",
+        headerShadowVisible: false,
         headerTitleStyle: {
           fontFamily: "Roboto",
           color: "black",
           fontSize: 18,
         },
         headerTintColor: "#54D6FF",
+        // headerLeft: () => {
+        //   return (
+        //     <TouchableOpacity
+        //       style={{ paddingLeft: 10 }}
+        //       onPress={() => navigation.goBack()}
+        //     >
+        //       <HeaderButton name={"arrow-back"} size={28} color="#54D6FF" />
+        //     </TouchableOpacity>
+        //   );
+        // },
       }}
     >
       <ListStack.Screen

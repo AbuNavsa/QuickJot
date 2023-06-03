@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Checkbox } from "react-native-paper";
 import styled from "styled-components";
 import { Spacer } from "../../../components/spacer.component";
@@ -15,7 +15,9 @@ import {
   SectionEnd,
 } from "./list-checklist.styles";
 
-export const ChecklistItemRow = ({ name, color }) => {
+export const ChecklistItemRow = ({ name, color, isComplete }) => {
+  const [checked, setChecked] = useState(isComplete);
+
   return (
     <ChecklistItem>
       <ChecklistInfo>
@@ -34,10 +36,10 @@ export const ChecklistItemRow = ({ name, color }) => {
         </Spacer>
         <Section>
           <SectionEnd>
-            <Checkbox
+            <Checkbox.Android
               color="black"
               uncheckedColor="#AAAAAA"
-              status="unchecked"
+              status={checked ? "checked" : "unchecked"}
               onPress={() => {}}
             />
           </SectionEnd>

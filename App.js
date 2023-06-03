@@ -11,6 +11,8 @@ import { theme } from "./src/infrastructure/theme";
 import { ListsContextProvider } from "./src/services/lists/lists.context";
 import { Navigation } from "./src/infrastructure/navigation";
 
+import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
+
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -25,9 +27,11 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <ListsContextProvider>
-          <Navigation />
-        </ListsContextProvider>
+        <AuthenticationContextProvider>
+          <ListsContextProvider>
+            <Navigation />
+          </ListsContextProvider>
+        </AuthenticationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>

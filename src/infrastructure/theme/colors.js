@@ -14,6 +14,8 @@ export const colors = {
     success: "#138000",
     inputBorder: "#AAAAAA",
     smallPrint: "#7D7D7D",
+    muted: "#ACACAC",
+    unknown: "#DEDEDE",
   },
   bg: {
     primary: "#FFFFFF",
@@ -26,6 +28,10 @@ export const colors = {
     inverse: "#FFFFFF",
     error: "#D0421B",
     success: "#138000",
+    muted: "#ACACAC",
+  },
+  input: {
+    textBox: "#E8E8E8",
   },
   cats: {
     text: "#FFFFFF",

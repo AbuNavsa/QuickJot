@@ -73,15 +73,6 @@ export const ListsScreen = ({ navigation }) => {
 
   return (
     <SafeArea>
-      {/* Floating Button */}
-
-      <AddButton
-        icon="plus"
-        // animated={true}
-        color="white"
-        onPress={() => console.log("Pressed")}
-      />
-
       {/* Search Function */}
 
       <SearchContainer collapsed={displaySearchbar}>
@@ -118,6 +109,14 @@ export const ListsScreen = ({ navigation }) => {
           <Loading size={50} animating={true} />
         </LoadingContainer>
       )}
+      {/* Floating Button */}
+
+      <AddButton
+        icon="plus"
+        // animated={true}
+        color="white"
+        onPress={() => console.log("Pressed")}
+      />
     </SafeArea>
   );
 };

@@ -52,10 +52,12 @@ export const SectionEnd = styled.View`
   justify-content: flex-end;
 `;
 
-export const SharingIcon = styled(Ionicons)`
+export const SharingIconContainer = styled.View`
+  border-radius: 100px;
   background-color: ${(props) => props.theme.colors.bg.primary};
+  position: absolute;
   right: 0;
   bottom: 0;
-  border-radius: 100px;
-  position: absolute;
 `;
+
+export const SharingIcon = styled(Ionicons)``;

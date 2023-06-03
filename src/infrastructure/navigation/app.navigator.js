@@ -11,7 +11,7 @@ export const AppNavigator = () => {
   const Tab = createBottomTabNavigator();
 
   const TAB_ICONS = (focused) => ({
-    Lists: focused ? "checkbox" : "checkbox-outline",
+    ListScreen: focused ? "checkbox" : "checkbox-outline",
     Notes: focused ? "document-text" : "document-text-outline",
     Friends: focused ? "people" : "people-outline",
     Settings: focused ? "settings" : "settings-outline",
@@ -23,6 +23,8 @@ export const AppNavigator = () => {
 
     return {
       headerTitleAlign: "center",
+      headerShadowVisible: false,
+
       headerTitleStyle: {
         fontFamily: "Roboto",
         color: "black",
@@ -62,29 +64,27 @@ export const AppNavigator = () => {
   );
 
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={screenOptions}
-        tabBarOptions={{
-          activeTintColor: "#000000",
-          inactiveTintColor: "gray",
-          showLabel: false,
-        }}
-      >
-        <Tab.Screen
-          name="Lists"
-          component={ListsNavigator}
-          options={{ headerShown: false }}
-        />
-        <Tab.Screen name="Notes" component={Notes} />
-        <Tab.Screen name="Friends" component={Friends} />
-        <Tab.Screen name="Settings" component={Settings} />
-        <Tab.Screen
-          name="Favourites"
-          component={FavouritesScreen}
-          options={{ headerShown: true }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator
+      screenOptions={screenOptions}
+      tabBarOptions={{
+        activeTintColor: "#000000",
+        inactiveTintColor: "gray",
+        showLabel: false,
+      }}
+    >
+      <Tab.Screen
+        name="ListScreen"
+        component={ListsNavigator}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen name="Notes" component={Notes} />
+      <Tab.Screen name="Friends" component={Friends} />
+      <Tab.Screen name="Settings" component={Settings} />
+      <Tab.Screen
+        name="Favourites"
+        component={FavouritesScreen}
+        options={{ headerShown: true }}
+      />
+    </Tab.Navigator>
   );
 };
