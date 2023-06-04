@@ -12,7 +12,7 @@ export const ChecklistInfo = styled.View`
   padding-bottom: ${(props) => props.theme.space[3]};
   flex-direction: row;
   align-items: center;
-  opacity: ${(props) => (props.status == "Completed" ? "0.5" : "1")};
+  opacity: ${(props) => (props.status ? "0.5" : "1")};
 `;
 
 export const ChecklistName = styled.Text`
@@ -20,8 +20,7 @@ export const ChecklistName = styled.Text`
   font-size: ${(props) => props.theme.fontSizes.body};
   // background-color: green;
   color: ${(props) => props.theme.colors.ui.primary};
-  text-decoration: ${(props) =>
-    props.status == "Completed" ? "line-through" : "none"};
+  text-decoration: ${(props) => (props.status ? "line-through" : "none")};
 `;
 
 export const ChecklistIconContainer = styled.View``;

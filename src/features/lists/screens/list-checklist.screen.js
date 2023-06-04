@@ -31,7 +31,7 @@ export const ListChecklistScreen = ({ route, navigation }) => {
         <ChecklistItemRow
           name="Apple Juice"
           color="lightBlue"
-          isComplete={true}
+          status="complete"
         />
       </TouchableOpacity>
       <TouchableOpacity
@@ -42,7 +42,7 @@ export const ListChecklistScreen = ({ route, navigation }) => {
           alert("onLongPress");
         }}
       >
-        <ChecklistItemRow name="Milk" color="lightBlue" isComplete={false} />
+        <ChecklistItemRow name="Milk" color="lightBlue" status={true} />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
@@ -52,7 +52,7 @@ export const ListChecklistScreen = ({ route, navigation }) => {
           alert("onLongPress");
         }}
       >
-        <ChecklistItemRow name="Chicken Fillet" color="red" isComplete={true} />
+        <ChecklistItemRow name="Chicken Fillet" color="red" status={true} />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
@@ -62,11 +62,7 @@ export const ListChecklistScreen = ({ route, navigation }) => {
           alert("onLongPress");
         }}
       >
-        <ChecklistItemRow
-          name="Orange Juice"
-          color="orange"
-          isComplete={true}
-        />
+        <ChecklistItemRow name="Orange Juice" color="orange" status={true} />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
@@ -76,7 +72,7 @@ export const ListChecklistScreen = ({ route, navigation }) => {
           alert("onLongPress");
         }}
       >
-        <ChecklistItemRow name="Deodorant" color="orange" isComplete={true} />
+        <ChecklistItemRow name="Deodorant" color="orange" status={true} />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
@@ -86,7 +82,7 @@ export const ListChecklistScreen = ({ route, navigation }) => {
           alert("onLongPress");
         }}
       >
-        <ChecklistItemRow name="Toothpaste" color="pink" isComplete={false} />
+        <ChecklistItemRow name="Toothpaste" color="pink" status={false} />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
@@ -96,7 +92,7 @@ export const ListChecklistScreen = ({ route, navigation }) => {
           alert("onLongPress");
         }}
       >
-        <ChecklistItemRow name="Vaseline" color="pink" isComplete={false} />
+        <ChecklistItemRow name="Vaseline" color="pink" status={false} />
       </TouchableOpacity>
     </SafeArea>
   );

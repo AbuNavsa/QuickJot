@@ -15,23 +15,24 @@ import {
   SectionEnd,
 } from "./list-checklist.styles";
 
-export const ChecklistItemRow = ({ name, color, isComplete }) => {
-  const [checked, setChecked] = useState(isComplete);
+export const ChecklistItemRow = ({ name, color, status }) => {
+  const [checked, setChecked] = useState(status);
 
   return (
     <ChecklistItem
       onPress={() => {
         setChecked(!checked);
+        // Changed check status a level up/ in db
       }}
     >
-      <ChecklistInfo>
+      <ChecklistInfo status={checked}>
         <ChecklistIconContainer>
           <ChecklistIcon color={(props) => props.theme.colors.cats[color]} />
         </ChecklistIconContainer>
         <Spacer position="left" size="large" />
         <Divider />
         <Spacer position="left" size="large">
-          <ChecklistName>{name}</ChecklistName>
+          <ChecklistName status={checked}>{name}</ChecklistName>
           <ChecklistMetadata>
             <ChecklistDetails>Qty: 2</ChecklistDetails>
             <Spacer position="left" size="large" />
